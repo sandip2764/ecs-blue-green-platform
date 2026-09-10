@@ -50,3 +50,24 @@ variable "aws_private_subnet_cidrs_az" {
     }
   }
 }
+
+# sg
+
+variable "lb_allowed_ports" {
+  default = {
+    http  = 80,
+    https = 443
+  }
+}
+
+variable "ecs_farget_allowed_ports" {
+  default = {
+    tcp = 80
+  }
+}
+
+variable "rds_allowed_ports" {
+  default = {
+    mysql = 3306
+  }
+}

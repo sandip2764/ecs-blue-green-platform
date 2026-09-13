@@ -60,3 +60,21 @@ module "rds_security_group" {
   }
 }
 
+# iam role 
+
+module "iam" {
+  source = "../modules/iam/"
+
+  project_name = var.project_name
+
+  db_secret_arn = ""
+
+  ecr_repository_arn = data.terraform_remote_state.bootstrap.outputs.aws_ecr_repository_url
+
+  codedeploy_application_arn = ""
+
+  codedeploy_deployment_group_arn = ""
+
+  github_repository = ""
+
+}

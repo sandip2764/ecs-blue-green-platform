@@ -78,3 +78,28 @@ module "iam" {
   github_repository = ""
 
 }
+
+# rds 
+
+module "rds" {
+  source = "../modules/rds/"
+
+  subnet_ids = values(module.networking.aws_private_subnet_ids)
+  identifier = "${var.project_name}-db"
+
+  security_group = [ module.rds_security_group.aws_security_group_id ] 
+
+  instance_class = var.instance_class
+
+  username = var.username
+  password = var.password
+
+  storage = var.storage
+  storage_type = var.storage_type
+
+  engine = var.engine
+  engine_version = var.engine_version
+
+  publicly_accessible = var.public_access
+  skip_final_snapshot = var.skip_final_snapshot
+}

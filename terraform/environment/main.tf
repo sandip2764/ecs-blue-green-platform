@@ -87,19 +87,40 @@ module "rds" {
   subnet_ids = values(module.networking.aws_private_subnet_ids)
   identifier = "${var.project_name}-db"
 
-  security_group = [ module.rds_security_group.aws_security_group_id ] 
+  security_group = [module.rds_security_group.aws_security_group_id]
 
   instance_class = var.instance_class
 
   username = var.username
   password = var.password
 
-  storage = var.storage
+  storage      = var.storage
   storage_type = var.storage_type
 
-  engine = var.engine
+  engine         = var.engine
   engine_version = var.engine_version
 
   publicly_accessible = var.public_access
   skip_final_snapshot = var.skip_final_snapshot
+}
+
+# create aws secret manager for db
+
+resource "aws_secretsmanager_secret" "db" {
+  name                    = "${var.project_name}-db-secret"
+  recovery_window_in_days = 0
+}
+
+resource "aws_secretsmanager_secret_version" "db" {
+
+  secret_id = aws_secretsmanager_secret.db.id
+
+  secret_string = jsonencode({
+    host     = module.rds.host
+    username = module.rds.username
+    password = module.rds.password
+    database = var.database_name
+    port     = module.rds.port
+  })
+
 }

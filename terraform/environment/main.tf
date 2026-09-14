@@ -124,3 +124,27 @@ resource "aws_secretsmanager_secret_version" "db" {
   })
 
 }
+
+# ecs 
+
+module "ecs" {
+  source = "../modules/ecs/"
+
+  project_name = "${var.project_name}-ecs"
+  private_subnet_ids = values(module.networking.aws_private_subnet_ids)
+  log_group_name = ""
+  execution_role_arn = module.iam.ecs_task_execution_role_arn
+  aws_region = var.region
+
+  container_name = "${var.project_name}-container"
+  container_port = ""
+  container_image = ""
+  security_group_id = ""
+
+  task_cpu = ""
+  task_memory = ""
+  task_role_arn = ""
+
+  blue_target_group_arn = ""
+
+}

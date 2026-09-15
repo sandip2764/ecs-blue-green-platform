@@ -148,3 +148,26 @@ module "ecs" {
   blue_target_group_arn = ""
 
 }
+
+# alb + listner + tg 
+
+module "lb" {
+  source = "../modules/alb/"
+
+  project_name = var.project_name
+
+  vpc_id = module.networking.vpc_id
+  subnets = values(module.networking.aws_public_subnet_ids)
+  security_group_ids = [module.alb_security_group.aws_security_group_id]
+
+  load_balancer_type = "application"
+
+  target_group_port = 80
+  target_group_protocol = "HTTP"
+
+  health_check_interval = 120
+  health_check_path = "/"
+  health_check_timeout = 30
+
+  certificate_arn = ""
+}

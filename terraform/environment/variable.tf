@@ -116,6 +116,6 @@ variable "skip_final_snapshot" {
 }
 
 variable "github_repository" {
-  type = string
+  type    = string
   default = "sandip2764/ecs-blue-green-platform"
 }

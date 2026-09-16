@@ -82,8 +82,8 @@ resource "aws_route53_record" "app_ipv4" {
   type = "A"
 
   alias {
-    name                   = module.load-balancer.alb_dns_name
-    zone_id                = module.load-balancer.alb_zone_id
+    name                   = module.lb.alb_dns_name
+    zone_id                = module.lb.alb_zone_id
     evaluate_target_health = true
   }
 }

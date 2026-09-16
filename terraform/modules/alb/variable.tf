@@ -62,8 +62,3 @@ variable "health_check_timeout" {
 variable "health_check_interval" {
   type    = number
 }
-
-variable "tags" {
-  type    = map(string)
-  default = {}
-}

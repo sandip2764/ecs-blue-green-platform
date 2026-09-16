@@ -91,7 +91,7 @@ module "iam" {
 
   db_secret_arn = aws_secretsmanager_secret.db.arn
 
-  ecr_repository_arn = data.terraform_remote_state.bootstrap.outputs.aws_ecr_repository_url
+  ecr_repository_arn = data.terraform_remote_state.bootstrap.outputs.aws_ecr_repository_arn
 
   github_repository = var.github_repository
 
@@ -130,18 +130,18 @@ module "lb" {
 
   project_name = var.project_name
 
-  vpc_id = module.networking.vpc_id
-  subnets = values(module.networking.aws_public_subnet_ids)
+  vpc_id             = module.networking.vpc_id
+  subnets            = values(module.networking.aws_public_subnet_ids)
   security_group_ids = [module.alb_security_group.aws_security_group_id]
 
   load_balancer_type = "application"
 
-  target_group_port = 80
+  target_group_port     = 80
   target_group_protocol = "HTTP"
 
   health_check_interval = 120
-  health_check_path = "/"
-  health_check_timeout = 30
+  health_check_path     = "/"
+  health_check_timeout  = 30
 
   certificate_arn = aws_acm_certificate.app_cert.arn
 }
@@ -158,17 +158,17 @@ module "cloudwatch_logs" {
 module "ecs" {
   source = "../modules/ecs/"
 
-  project_name = "${var.project_name}-ecs"
+  project_name       = "${var.project_name}-ecs"
   private_subnet_ids = values(module.networking.aws_private_subnet_ids)
-  log_group_name = module.cloudwatch_logs.ecs_log_group_name
+  log_group_name     = module.cloudwatch_logs.ecs_log_group_name
   execution_role_arn = module.iam.ecs_task_execution_role_arn
-  aws_region = var.region
+  aws_region         = var.region
 
   container_name = "${var.project_name}-container"
-  
-  container_image = "${data.terraform_remote_state.bootstrap.aws_ecr_repository_url}:v1"
+
+  container_image   = "${data.terraform_remote_state.bootstrap.outputs.aws_ecr_repository_url}:v1"
   security_group_id = [module.ecs_farget_security_group.aws_security_group_id]
-  task_role_arn = module.iam.ecs_task_role_arn
+  task_role_arn     = module.iam.ecs_task_role_arn
 
   blue_target_group_arn = module.lb.blue_target_group_arn
 

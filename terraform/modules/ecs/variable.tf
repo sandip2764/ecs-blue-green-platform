@@ -59,7 +59,7 @@ variable "private_subnet_ids" {
 
 variable "security_group_id" {
   description = "Security group attached to ECS tasks"
-  type        = string
+  type        = list(string)
 }
 
 variable "blue_target_group_arn" {

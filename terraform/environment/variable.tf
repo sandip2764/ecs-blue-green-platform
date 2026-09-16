@@ -114,3 +114,8 @@ variable "public_access" {
 variable "skip_final_snapshot" {
   default = true
 }
+
+variable "github_repository" {
+  type = string
+  default = "sandip2764/ecs-blue-green-platform"
+}

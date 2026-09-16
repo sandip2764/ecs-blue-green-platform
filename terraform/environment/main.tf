@@ -60,6 +60,28 @@ module "rds_security_group" {
   }
 }
 
+# create aws secret manager for db
+
+resource "aws_secretsmanager_secret" "db" {
+  name                    = "${var.project_name}-db-secret"
+  recovery_window_in_days = 0
+}
+
+resource "aws_secretsmanager_secret_version" "db" {
+
+  secret_id = aws_secretsmanager_secret.db.id
+
+  secret_string = jsonencode({
+    host     = module.rds.host
+    username = module.rds.username
+    password = module.rds.password
+    database = var.database_name
+    port     = module.rds.port
+  })
+
+}
+
+
 # iam role 
 
 module "iam" {
@@ -67,15 +89,11 @@ module "iam" {
 
   project_name = var.project_name
 
-  db_secret_arn = ""
+  db_secret_arn = aws_secretsmanager_secret.db.arn
 
   ecr_repository_arn = data.terraform_remote_state.bootstrap.outputs.aws_ecr_repository_url
 
-  codedeploy_application_arn = ""
-
-  codedeploy_deployment_group_arn = ""
-
-  github_repository = ""
+  github_repository = var.github_repository
 
 }
 
@@ -104,50 +122,6 @@ module "rds" {
   skip_final_snapshot = var.skip_final_snapshot
 }
 
-# create aws secret manager for db
-
-resource "aws_secretsmanager_secret" "db" {
-  name                    = "${var.project_name}-db-secret"
-  recovery_window_in_days = 0
-}
-
-resource "aws_secretsmanager_secret_version" "db" {
-
-  secret_id = aws_secretsmanager_secret.db.id
-
-  secret_string = jsonencode({
-    host     = module.rds.host
-    username = module.rds.username
-    password = module.rds.password
-    database = var.database_name
-    port     = module.rds.port
-  })
-
-}
-
-# ecs 
-
-module "ecs" {
-  source = "../modules/ecs/"
-
-  project_name = "${var.project_name}-ecs"
-  private_subnet_ids = values(module.networking.aws_private_subnet_ids)
-  log_group_name = ""
-  execution_role_arn = module.iam.ecs_task_execution_role_arn
-  aws_region = var.region
-
-  container_name = "${var.project_name}-container"
-  container_port = ""
-  container_image = ""
-  security_group_id = ""
-
-  task_cpu = ""
-  task_memory = ""
-  task_role_arn = ""
-
-  blue_target_group_arn = ""
-
-}
 
 # alb + listner + tg 
 
@@ -169,5 +143,33 @@ module "lb" {
   health_check_path = "/"
   health_check_timeout = 30
 
-  certificate_arn = ""
+  certificate_arn = aws_acm_certificate.app_cert.arn
+}
+
+# cloudwatch logs
+
+module "cloudwatch_logs" {
+  source = "../modules/cloudwatch/"
+
+  project_name = var.project_name
+}
+# ecs 
+
+module "ecs" {
+  source = "../modules/ecs/"
+
+  project_name = "${var.project_name}-ecs"
+  private_subnet_ids = values(module.networking.aws_private_subnet_ids)
+  log_group_name = module.cloudwatch_logs.ecs_log_group_name
+  execution_role_arn = module.iam.ecs_task_execution_role_arn
+  aws_region = var.region
+
+  container_name = "${var.project_name}-container"
+  
+  container_image = "${data.terraform_remote_state.bootstrap.aws_ecr_repository_url}:v1"
+  security_group_id = [module.ecs_farget_security_group.aws_security_group_id]
+  task_role_arn = module.iam.ecs_task_role_arn
+
+  blue_target_group_arn = module.lb.blue_target_group_arn
+
 }

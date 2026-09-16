@@ -85,32 +85,6 @@ resource "aws_iam_policy" "github_ecr" {
 }
 
 
-resource "aws_iam_policy" "github_codedeploy" {
-  name = "${var.project_name}-github-codedeploy"
-
-  policy = jsonencode({
-    Version = "2012-10-17"
-
-    Statement = [{
-      Sid    = "CodeDeployDeployment"
-      Effect = "Allow"
-
-      Action = [
-        "codedeploy:CreateDeployment",
-        "codedeploy:GetDeployment",
-        "codedeploy:GetDeploymentConfig",
-        "codedeploy:GetApplication",
-        "codedeploy:GetDeploymentGroup"
-      ]
-
-      Resource = [
-        var.codedeploy_application_arn,
-        var.codedeploy_deployment_group_arn
-      ]
-    }]
-  })
-}
-
 resource "aws_iam_policy" "github_terraform" {
   name = "${var.project_name}-github-terraform"
 
@@ -177,11 +151,6 @@ resource "aws_iam_policy" "github_passrole" {
 resource "aws_iam_role_policy_attachment" "github_ecr" {
   role       = aws_iam_role.github_actions.name
   policy_arn = aws_iam_policy.github_ecr.arn
-}
-
-resource "aws_iam_role_policy_attachment" "github_codedeploy" {
-  role       = aws_iam_role.github_actions.name
-  policy_arn = aws_iam_policy.github_codedeploy.arn
 }
 
 resource "aws_iam_role_policy_attachment" "github_terraform" {

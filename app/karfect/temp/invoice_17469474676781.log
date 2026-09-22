@@ -1,0 +1,209 @@
+This is pdfTeX, Version 3.141592653-2.6-1.40.27 (MiKTeX 25.4) (preloaded format=pdflatex 2025.5.11)  11 MAY 2025 12:41
+entering extended mode
+ restricted \write18 enabled.
+ %&-line parsing enabled.
+**C:/xampp/htdocs/karfect/temp/invoice_17469474676781.tex
+(C:/xampp/htdocs/karfect/temp/invoice_17469474676781.tex
+LaTeX2e <2024-11-01> patch level 2
+L3 programming layer <2025-04-14>
+
+(C:\Users\Sandip Paria\AppData\Local\Programs\MiKTeX\tex/latex/base\article.cls
+Document Class: article 2024/06/29 v1.4n Standard LaTeX document class
+(C:\Users\Sandip Paria\AppData\Local\Programs\MiKTeX\tex/latex/base\size12.clo
+File: size12.clo 2024/06/29 v1.4n Standard LaTeX file (size option)
+)
+\c@part=\count272
+\c@section=\count273
+\c@subsection=\count274
+\c@subsubsection=\count275
+\c@paragraph=\count276
+\c@subparagraph=\count277
+\c@figure=\count278
+\c@table=\count279
+\abovecaptionskip=\skip49
+\belowcaptionskip=\skip50
+\bibindent=\dimen146
+)
+(C:\Users\Sandip Paria\AppData\Local\Programs\MiKTeX\tex/latex/base\inputenc.st
+y
+Package: inputenc 2024/02/08 v1.3d Input encoding file
+\inpenc@prehook=\toks17
+\inpenc@posthook=\toks18
+)
+(C:\Users\Sandip Paria\AppData\Local\Programs\MiKTeX\tex/latex/geometry\geometr
+y.sty
+Package: geometry 2020/01/02 v5.9 Page Geometry
+
+(C:\Users\Sandip Paria\AppData\Local\Programs\MiKTeX\tex/latex/graphics\keyval.
+sty
+Package: keyval 2022/05/29 v1.15 key=value parser (DPC)
+\KV@toks@=\toks19
+)
+(C:\Users\Sandip Paria\AppData\Local\Programs\MiKTeX\tex/generic/iftex\ifvtex.s
+ty
+Package: ifvtex 2019/10/25 v1.7 ifvtex legacy package. Use iftex instead.
+
+(C:\Users\Sandip Paria\AppData\Local\Programs\MiKTeX\tex/generic/iftex\iftex.st
+y
+Package: iftex 2024/12/12 v1.0g TeX engine tests
+))
+\Gm@cnth=\count280
+\Gm@cntv=\count281
+\c@Gm@tempcnt=\count282
+\Gm@bindingoffset=\dimen147
+\Gm@wd@mp=\dimen148
+\Gm@odd@mp=\dimen149
+\Gm@even@mp=\dimen150
+\Gm@layoutwidth=\dimen151
+\Gm@layoutheight=\dimen152
+\Gm@layouthoffset=\dimen153
+\Gm@layoutvoffset=\dimen154
+\Gm@dimlist=\toks20
+
+(C:\Users\Sandip Paria\AppData\Local\Programs\MiKTeX\tex/latex/geometry\geometr
+y.cfg))
+(C:\Users\Sandip Paria\AppData\Local\Programs\MiKTeX\tex/latex/tools\array.sty
+Package: array 2024/10/17 v2.6g Tabular extension package (FMi)
+\col@sep=\dimen155
+\ar@mcellbox=\box53
+\extrarowheight=\dimen156
+\NC@list=\toks21
+\extratabsurround=\skip51
+\backup@length=\skip52
+\ar@cellbox=\box54
+)
+(C:\Users\Sandip Paria\AppData\Local\Programs\MiKTeX\tex/latex/booktabs\booktab
+s.sty
+Package: booktabs 2020/01/12 v1.61803398 Publication quality tables
+\heavyrulewidth=\dimen157
+\lightrulewidth=\dimen158
+\cmidrulewidth=\dimen159
+\belowrulesep=\dimen160
+\belowbottomsep=\dimen161
+\aboverulesep=\dimen162
+\abovetopsep=\dimen163
+\cmidrulesep=\dimen164
+\cmidrulekern=\dimen165
+\defaultaddspace=\dimen166
+\@cmidla=\count283
+\@cmidlb=\count284
+\@aboverulesep=\dimen167
+\@belowrulesep=\dimen168
+\@thisruleclass=\count285
+\@lastruleclass=\count286
+\@thisrulewidth=\dimen169
+)
+(C:\Users\Sandip Paria\AppData\Local\Programs\MiKTeX\tex/latex/fancyhdr\fancyhd
+r.sty
+Package: fancyhdr 2025/02/07 v5.2 Extensive control of page headers and footers
+
+\f@nch@headwidth=\skip53
+\f@nch@offset@elh=\skip54
+\f@nch@offset@erh=\skip55
+\f@nch@offset@olh=\skip56
+\f@nch@offset@orh=\skip57
+\f@nch@offset@elf=\skip58
+\f@nch@offset@erf=\skip59
+\f@nch@offset@olf=\skip60
+\f@nch@offset@orf=\skip61
+\f@nch@height=\skip62
+\f@nch@footalignment=\skip63
+\f@nch@widthL=\skip64
+\f@nch@widthC=\skip65
+\f@nch@widthR=\skip66
+\@temptokenb=\toks22
+)
+(C:\Users\Sandip Paria\AppData\Local\Programs\MiKTeX\tex/latex/lastpage\lastpag
+e.sty
+Package: lastpage 2025/01/27 v2.1e lastpage: 2.09 or 2e? (HMM)
+
+(C:\Users\Sandip Paria\AppData\Local\Programs\MiKTeX\tex/latex/lastpage\lastpag
+e2e.sty
+Package: lastpage2e 2025/01/27 v2.1e Decide which 2e lastpage version to use (H
+MM)
+
+(C:\Users\Sandip Paria\AppData\Local\Programs\MiKTeX\tex/latex/lastpage\lastpag
+emodern.sty
+Package: lastpagemodern 2025-01-27 v2.1e Refers to last page's name (HMM; JPG)
+\c@lastpagecount=\count287
+) 
+))
+(C:\Users\Sandip Paria\AppData\Local\Programs\MiKTeX\tex/latex/l3backend\l3back
+end-pdftex.def
+File: l3backend-pdftex.def 2025-04-14 L3 backend support: PDF output (pdfTeX)
+\l__color_backend_stack_int=\count288
+) (C:/xampp\htdocs\karfect\temp\invoice_17469474676781.aux)
+\openout1 = `invoice_17469474676781.aux'.
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 15.
+LaTeX Font Info:    ... okay on input line 15.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 15.
+LaTeX Font Info:    ... okay on input line 15.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 15.
+LaTeX Font Info:    ... okay on input line 15.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 15.
+LaTeX Font Info:    ... okay on input line 15.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 15.
+LaTeX Font Info:    ... okay on input line 15.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 15.
+LaTeX Font Info:    ... okay on input line 15.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 15.
+LaTeX Font Info:    ... okay on input line 15.
+
+*geometry* driver: auto-detecting
+*geometry* detected driver: pdftex
+*geometry* verbose mode - [ preamble ] result:
+* driver: pdftex
+* paper: a4paper
+* layout: <same size as paper>
+* layoutoffset:(h,v)=(0.0pt,0.0pt)
+* modes: 
+* h-part:(L,W,R)=(42.67912pt, 512.14963pt, 42.67912pt)
+* v-part:(T,H,B)=(56.9055pt, 731.23584pt, 56.9055pt)
+* \paperwidth=597.50787pt
+* \paperheight=845.04684pt
+* \textwidth=512.14963pt
+* \textheight=731.23584pt
+* \oddsidemargin=-29.59087pt
+* \evensidemargin=-29.59087pt
+* \topmargin=-52.36449pt
+* \headheight=12.0pt
+* \headsep=25.0pt
+* \topskip=12.0pt
+* \footskip=30.0pt
+* \marginparwidth=35.0pt
+* \marginparsep=10.0pt
+* \columnsep=10.0pt
+* \skip\footins=10.8pt plus 4.0pt minus 2.0pt
+* \hoffset=0.0pt
+* \voffset=0.0pt
+* \mag=1000
+* \@twocolumnfalse
+* \@twosidefalse
+* \@mparswitchfalse
+* \@reversemarginfalse
+* (1in=72.27pt=25.4mm, 1cm=28.453pt)
+
+! Missing $ inserted.
+<inserted text> 
+                $
+l.23         Invoice No: order_
+                               QTX1qHYHm9ffjG \quad Date: May 11, 2025
+? 
+! Emergency stop.
+<inserted text> 
+                $
+l.23         Invoice No: order_
+                               QTX1qHYHm9ffjG \quad Date: May 11, 2025
+End of file on the terminal!
+
+ 
+Here is how much of TeX's memory you used:
+ 1614 strings out of 469941
+ 29225 string characters out of 5466006
+ 424186 words of memory out of 5000000
+ 28465 multiletter control sequences out of 15000+600000
+ 627737 words of font info for 43 fonts, out of 8000000 for 9000
+ 1141 hyphenation exceptions out of 8191
+ 68i,1n,65p,235b,151s stack positions out of 10000i,1000n,20000p,200000b,200000s
+!  ==> Fatal error occurred, no output PDF file produced!

@@ -1,0 +1,74 @@
+PWD C:\xampp\htdocs\karfect\includes
+INPUT C:\Users\Sandip Paria\AppData\Local\MiKTeX\miktex\data\le\xetex\xelatex.fmt
+INPUT C:\xampp\htdocs\karfect\temp\invoice_17469661760018.tex
+OUTPUT C:\xampp\htdocs\karfect\temp\invoice_17469661760018.log
+INPUT C:\Users\Sandip Paria\AppData\Local\Programs\MiKTeX\tex\latex\base\article.cls
+INPUT C:\Users\Sandip Paria\AppData\Local\Programs\MiKTeX\tex\latex\base\article.cls
+INPUT C:\Users\Sandip Paria\AppData\Local\Programs\MiKTeX\tex\latex\base\size12.clo
+INPUT C:\Users\Sandip Paria\AppData\Local\Programs\MiKTeX\tex\latex\base\size12.clo
+INPUT C:\Users\Sandip Paria\AppData\Local\Programs\MiKTeX\tex\latex\base\size12.clo
+INPUT C:\Users\Sandip Paria\AppData\Local\Programs\MiKTeX\tex\latex\fontspec\fontspec.sty
+INPUT C:\Users\Sandip Paria\AppData\Local\Programs\MiKTeX\tex\latex\fontspec\fontspec.sty
+INPUT C:\Users\Sandip Paria\AppData\Local\Programs\MiKTeX\tex\latex\l3packages\xparse\xparse.sty
+INPUT C:\Users\Sandip Paria\AppData\Local\Programs\MiKTeX\tex\latex\l3packages\xparse\xparse.sty
+INPUT C:\Users\Sandip Paria\AppData\Local\Programs\MiKTeX\tex\latex\l3kernel\expl3.sty
+INPUT C:\Users\Sandip Paria\AppData\Local\Programs\MiKTeX\tex\latex\l3kernel\expl3.sty
+INPUT C:\Users\Sandip Paria\AppData\Local\Programs\MiKTeX\tex\latex\l3backend\l3backend-xetex.def
+INPUT C:\Users\Sandip Paria\AppData\Local\Programs\MiKTeX\tex\latex\l3backend\l3backend-xetex.def
+INPUT C:\Users\Sandip Paria\AppData\Local\Programs\MiKTeX\tex\latex\fontspec\fontspec-xetex.sty
+INPUT C:\Users\Sandip Paria\AppData\Local\Programs\MiKTeX\tex\latex\fontspec\fontspec-xetex.sty
+INPUT C:\Users\Sandip Paria\AppData\Local\Programs\MiKTeX\tex\latex\base\fontenc.sty
+INPUT C:\Users\Sandip Paria\AppData\Local\Programs\MiKTeX\tex\latex\base\fontenc.sty
+INPUT C:\Users\Sandip Paria\AppData\Local\Programs\MiKTeX\tex\latex\fontspec\fontspec.cfg
+INPUT C:\Users\Sandip Paria\AppData\Local\Programs\MiKTeX\tex\latex\fontspec\fontspec.cfg
+INPUT C:\Users\Sandip Paria\AppData\Local\Programs\MiKTeX\tex\latex\fontspec\fontspec.cfg
+INPUT C:\Users\Sandip Paria\AppData\Local\Programs\MiKTeX\tex\latex\polyglossia\polyglossia.sty
+INPUT C:\Users\Sandip Paria\AppData\Local\Programs\MiKTeX\tex\latex\polyglossia\polyglossia.sty
+INPUT C:\Users\Sandip Paria\AppData\Local\Programs\MiKTeX\tex\latex\etoolbox\etoolbox.sty
+INPUT C:\Users\Sandip Paria\AppData\Local\Programs\MiKTeX\tex\latex\etoolbox\etoolbox.sty
+INPUT C:\Users\Sandip Paria\AppData\Local\Programs\MiKTeX\tex\generic\iftex\iftex.sty
+INPUT C:\Users\Sandip Paria\AppData\Local\Programs\MiKTeX\tex\generic\iftex\iftex.sty
+INPUT C:\Users\Sandip Paria\AppData\Local\Programs\MiKTeX\tex\latex\polyglossia\gloss-latex.ldf
+INPUT C:\Users\Sandip Paria\AppData\Local\Programs\MiKTeX\tex\latex\polyglossia\gloss-latex.ldf
+INPUT C:\Users\Sandip Paria\AppData\Local\Programs\MiKTeX\tex\latex\polyglossia\gloss-english.ldf
+INPUT C:\Users\Sandip Paria\AppData\Local\Programs\MiKTeX\tex\latex\polyglossia\gloss-english.ldf
+INPUT C:\Users\Sandip Paria\AppData\Local\Programs\MiKTeX\tex\latex\polyglossia\gloss-hindi.ldf
+INPUT C:\Users\Sandip Paria\AppData\Local\Programs\MiKTeX\tex\latex\polyglossia\gloss-hindi.ldf
+INPUT C:\Users\Sandip Paria\AppData\Local\Programs\MiKTeX\tex\latex\polyglossia\devanagaridigits.sty
+INPUT C:\Users\Sandip Paria\AppData\Local\Programs\MiKTeX\tex\latex\polyglossia\devanagaridigits.sty
+INPUT C:\Users\Sandip Paria\AppData\Local\Programs\MiKTeX\tex\latex\geometry\geometry.sty
+INPUT C:\Users\Sandip Paria\AppData\Local\Programs\MiKTeX\tex\latex\geometry\geometry.sty
+INPUT C:\Users\Sandip Paria\AppData\Local\Programs\MiKTeX\tex\latex\graphics\keyval.sty
+INPUT C:\Users\Sandip Paria\AppData\Local\Programs\MiKTeX\tex\latex\graphics\keyval.sty
+INPUT C:\Users\Sandip Paria\AppData\Local\Programs\MiKTeX\tex\generic\iftex\ifvtex.sty
+INPUT C:\Users\Sandip Paria\AppData\Local\Programs\MiKTeX\tex\generic\iftex\ifvtex.sty
+INPUT C:\Users\Sandip Paria\AppData\Local\Programs\MiKTeX\tex\latex\geometry\geometry.cfg
+INPUT C:\Users\Sandip Paria\AppData\Local\Programs\MiKTeX\tex\latex\geometry\geometry.cfg
+INPUT C:\Users\Sandip Paria\AppData\Local\Programs\MiKTeX\tex\latex\geometry\geometry.cfg
+INPUT C:\Users\Sandip Paria\AppData\Local\Programs\MiKTeX\tex\latex\tools\array.sty
+INPUT C:\Users\Sandip Paria\AppData\Local\Programs\MiKTeX\tex\latex\tools\array.sty
+INPUT C:\Users\Sandip Paria\AppData\Local\Programs\MiKTeX\tex\latex\booktabs\booktabs.sty
+INPUT C:\Users\Sandip Paria\AppData\Local\Programs\MiKTeX\tex\latex\booktabs\booktabs.sty
+INPUT C:\Users\Sandip Paria\AppData\Local\Programs\MiKTeX\tex\latex\fancyhdr\fancyhdr.sty
+INPUT C:\Users\Sandip Paria\AppData\Local\Programs\MiKTeX\tex\latex\fancyhdr\fancyhdr.sty
+INPUT C:\Users\Sandip Paria\AppData\Local\Programs\MiKTeX\tex\latex\lastpage\lastpage.sty
+INPUT C:\Users\Sandip Paria\AppData\Local\Programs\MiKTeX\tex\latex\lastpage\lastpage.sty
+INPUT C:\Users\Sandip Paria\AppData\Local\Programs\MiKTeX\tex\latex\lastpage\lastpage2e.sty
+INPUT C:\Users\Sandip Paria\AppData\Local\Programs\MiKTeX\tex\latex\lastpage\lastpage2e.sty
+INPUT C:\Users\Sandip Paria\AppData\Local\Programs\MiKTeX\tex\latex\lastpage\lastpagemodern.sty
+INPUT C:\Users\Sandip Paria\AppData\Local\Programs\MiKTeX\tex\latex\lastpage\lastpagemodern.sty
+INPUT C:\xampp\htdocs\karfect\temp\invoice_17469661760018.aux
+INPUT C:\xampp\htdocs\karfect\temp\invoice_17469661760018.aux
+INPUT C:\xampp\htdocs\karfect\temp\invoice_17469661760018.aux
+OUTPUT C:\xampp\htdocs\karfect\temp\invoice_17469661760018.aux
+INPUT C:\Users\Sandip Paria\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmmi12.tfm
+INPUT C:\Users\Sandip Paria\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmmi8.tfm
+INPUT C:\Users\Sandip Paria\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmmi6.tfm
+INPUT C:\Users\Sandip Paria\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmsy10.tfm
+INPUT C:\Users\Sandip Paria\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmsy8.tfm
+INPUT C:\Users\Sandip Paria\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmsy6.tfm
+INPUT C:\Users\Sandip Paria\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmr12.tfm
+INPUT C:\Users\Sandip Paria\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmr8.tfm
+INPUT C:\Users\Sandip Paria\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmr6.tfm
+OUTPUT C:\xampp\htdocs\karfect\temp\invoice_17469661760018.xdv
+INPUT C:\xampp\htdocs\karfect\temp\invoice_17469661760018.aux

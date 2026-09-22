@@ -1,0 +1,9 @@
+
+services:
+  app:
+    build: .
+    container_name: php_app
+    ports:
+      - "80:80"
+    volumes:
+      - .:/var/www/html

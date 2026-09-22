@@ -1,0 +1,287 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Geist:wght@100..900&display=swap');
+
+
+body {
+    font-family: "Geist", sans-serif;
+    background-color: #ffffff;
+    color: #333;
+    margin: 0;
+    padding: 0;
+}
+
+.karfect-container {
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 20px;
+}
+
+.karfect-container h2 {
+    color: #fff;
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 28px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.karfect-address-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+.karfect-address-card {
+    background-color: #fff;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    position: relative;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.karfect-address-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+}
+
+.karfect-address-card .karfect-default-badge {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: #28a745;
+    color: #fff;
+    padding: 5px 10px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: 500;
+}
+
+.karfect-address-card .karfect-type {
+    font-weight: 600;
+    color: #572ac8;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+    font-size: 14px;
+}
+
+.karfect-address-card p {
+    margin: 5px 0;
+    color: #555;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+.karfect-address-actions {
+    margin-top: 15px;
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.karfect-address-actions button {
+    background: none;
+    border: none;
+    color: #572ac8;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 12px;
+    text-transform: uppercase;
+    transition: color 0.3s ease;
+}
+
+.karfect-address-actions button:hover {
+    color: #6e42e5;;
+    text-decoration: underline;
+}
+
+.karfect-address-actions .karfect-set-default-btn {
+    color: #28a745;
+}
+
+.karfect-address-actions .karfect-set-default-btn:hover {
+    color: #218838;
+}
+
+.karfect-add-address-btn {
+    display: block;
+    width: 200px;
+    margin: 30px auto;
+    padding: 12px;
+    background-color: #572ac8;
+    color: #fff;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 500;
+    text-align: center;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.karfect-add-address-btn:hover {
+    background-color: #6e42e5;;
+    transform: scale(1.05);
+}
+
+.karfect-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    z-index: 1000;
+    overflow-y: auto; /* Enable scrolling */
+    animation: karfect-fadeIn 0.3s ease;
+}
+
+.karfect-modal-content {
+    background-color: #fff;
+    margin: 5% auto;
+    padding: 25px;
+    width: 90%;
+    max-width: 700px;
+    border-radius: 12px;
+    position: relative;
+    box-shadow: 0 5px 25px rgba(0, 0, 0, 0.2);
+    animation: karfect-slideIn 0.3s ease;
+    min-height: 80vh; /* Ensure modal has enough height */
+}
+
+.karfect-close {
+    position: absolute;
+    top: 15px;
+    right: 25px;
+    font-size: 28px;
+    cursor: pointer;
+    color: #666;
+    transition: color 0.3s ease;
+}
+
+.karfect-close:hover {
+    color: #572ac8;
+}
+
+.karfect-form-group {
+    margin-bottom: 20px;
+}
+
+.karfect-form-group label {
+    display: block;
+    font-size: 14px;
+    font-weight: 500;
+    margin-bottom: 5px;
+    color: #333;
+}
+
+.karfect-form-group input,
+.karfect-form-group textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 14px;
+    transition: border-color 0.3s ease;
+}
+
+.karfect-form-group input:focus,
+.karfect-form-group textarea:focus {
+    border-color: #572ac8;
+    outline: none;
+}
+
+.karfect-form-group textarea {
+    resize: vertical;
+    min-height: 80px;
+}
+
+.karfect-address-type {
+    display: flex;
+    gap: 15px;
+    margin-top: 10px;
+}
+
+.karfect-address-type-box {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+}
+
+.karfect-address-type-box:hover {
+    border-color: #572ac8;
+    background-color: #fff5f0;
+}
+
+.karfect-address-type-box.karfect-address-type-selected {
+    border-color: #572ac8;
+    background-color: #572ac8;
+    color: #fff;
+}
+
+.karfect-address-type-box i {
+    margin-right: 5px;
+    color: inherit;
+}
+
+.karfect-save-btn {
+    width: 100%;
+    padding: 12px;
+    background-color: #572ac8;
+    color: #fff;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 500;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.karfect-save-btn:hover {
+    background-color: #6e42e5;;
+    transform: scale(1.02);
+}
+
+@keyframes karfect-fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes karfect-slideIn {
+    from { transform: translateY(-20px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+@media (max-width: 768px) {
+    .karfect-container {
+        padding: 10px;
+    }
+
+    .karfect-address-card {
+        padding: 15px;
+    }
+
+    .karfect-add-address-btn {
+        width: 100%;
+    }
+
+    .karfect-modal-content {
+        width: 95%;
+        margin: 10% auto;
+        min-height: auto; /* Adjust for smaller screens */
+    }
+
+    .karfect-address-type {
+        flex-direction: column;
+        gap: 10px;
+    }
+}

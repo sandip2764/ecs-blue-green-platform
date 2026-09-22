@@ -1,0 +1,157 @@
+This is XeTeX, Version 3.141592653-2.6-0.999997 (MiKTeX 25.4) (preloaded format=xelatex 2025.5.11)  11 MAY 2025 17:52
+entering extended mode
+ restricted \write18 enabled.
+ %&-line parsing enabled.
+**C:/xampp/htdocs/karfect/temp/invoice_17469661618934.tex
+(C:/xampp/htdocs/karfect/temp/invoice_17469661618934.tex
+LaTeX2e <2024-11-01> patch level 2
+L3 programming layer <2025-04-14>
+
+(C:\Users\Sandip Paria\AppData\Local\Programs\MiKTeX\tex/latex/base\article.cls
+Document Class: article 2024/06/29 v1.4n Standard LaTeX document class
+(C:\Users\Sandip Paria\AppData\Local\Programs\MiKTeX\tex/latex/base\size12.clo
+File: size12.clo 2024/06/29 v1.4n Standard LaTeX file (size option)
+)
+\c@part=\count268
+\c@section=\count269
+\c@subsection=\count270
+\c@subsubsection=\count271
+\c@paragraph=\count272
+\c@subparagraph=\count273
+\c@figure=\count274
+\c@table=\count275
+\abovecaptionskip=\skip49
+\belowcaptionskip=\skip50
+\bibindent=\dimen146
+)
+(C:\Users\Sandip Paria\AppData\Local\Programs\MiKTeX\tex/latex/fontspec\fontspe
+c.sty
+(C:\Users\Sandip Paria\AppData\Local\Programs\MiKTeX\tex/latex/l3packages/xpars
+e\xparse.sty
+(C:\Users\Sandip Paria\AppData\Local\Programs\MiKTeX\tex/latex/l3kernel\expl3.s
+ty
+Package: expl3 2025-04-14 L3 programming layer (loader) 
+
+(C:\Users\Sandip Paria\AppData\Local\Programs\MiKTeX\tex/latex/l3backend\l3back
+end-xetex.def
+File: l3backend-xetex.def 2025-04-14 L3 backend support: XeTeX
+\g__graphics_track_int=\count276
+\g__pdfannot_backend_int=\count277
+\g__pdfannot_backend_link_int=\count278
+))
+Package: xparse 2024-08-16 L3 Experimental document command parser
+)
+Package: fontspec 2024/05/11 v2.9e Font selection for XeLaTeX and LuaLaTeX
+
+(C:\Users\Sandip Paria\AppData\Local\Programs\MiKTeX\tex/latex/fontspec\fontspe
+c-xetex.sty
+Package: fontspec-xetex 2024/05/11 v2.9e Font selection for XeLaTeX and LuaLaTe
+X
+\l__fontspec_script_int=\count279
+\l__fontspec_language_int=\count280
+\l__fontspec_strnum_int=\count281
+\l__fontspec_tmp_int=\count282
+\l__fontspec_tmpa_int=\count283
+\l__fontspec_tmpb_int=\count284
+\l__fontspec_tmpc_int=\count285
+\l__fontspec_em_int=\count286
+\l__fontspec_emdef_int=\count287
+\l__fontspec_strong_int=\count288
+\l__fontspec_strongdef_int=\count289
+\l__fontspec_tmpa_dim=\dimen147
+\l__fontspec_tmpb_dim=\dimen148
+\l__fontspec_tmpc_dim=\dimen149
+
+(C:\Users\Sandip Paria\AppData\Local\Programs\MiKTeX\tex/latex/base\fontenc.sty
+Package: fontenc 2021/04/29 v2.0v Standard LaTeX package
+)
+(C:\Users\Sandip Paria\AppData\Local\Programs\MiKTeX\tex/latex/fontspec\fontspe
+c.cfg)))
+(C:\Users\Sandip Paria\AppData\Local\Programs\MiKTeX\tex/latex/polyglossia\poly
+glossia.sty
+Package: polyglossia 2025/01/31 v2.4 Modern multilingual typesetting with XeLaT
+eX and LuaLaTeX
+
+(C:\Users\Sandip Paria\AppData\Local\Programs\MiKTeX\tex/latex/etoolbox\etoolbo
+x.sty
+Package: etoolbox 2025/02/11 v2.5l e-TeX tools for LaTeX (JAW)
+\etb@tempcnta=\count290
+)
+(C:\Users\Sandip Paria\AppData\Local\Programs\MiKTeX\tex/generic/iftex\iftex.st
+y
+Package: iftex 2024/12/12 v1.0g TeX engine tests
+)
+\l_xpg_alias_keyvals_int=\count291
+
+(C:\Users\Sandip Paria\AppData\Local\Programs\MiKTeX\tex/latex/polyglossia\glos
+s-latex.ldf
+File: gloss-latex.ldf polyglossia: module for default language
+))
+(C:\Users\Sandip Paria\AppData\Local\Programs\MiKTeX\tex/latex/polyglossia\glos
+s-english.ldf
+File: gloss-english.ldf polyglossia: module for English
+)
+
+Package polyglossia Info: Default language is english
+
+
+(C:\Users\Sandip Paria\AppData\Local\Programs\MiKTeX\tex/latex/polyglossia\glos
+s-hindi.ldf
+File: gloss-hindi.ldf polyglossia: module for Hindi
+
+(C:\Users\Sandip Paria\AppData\Local\Programs\MiKTeX\tex/latex/polyglossia\deva
+nagaridigits.sty
+Package: devanagaridigits 2010/04/01 v0.1 Formatting of Devanagari digits
+))
+
+Package fontspec Info: 
+(fontspec)             Could not resolve font "Shobhika/I" (it probably
+(fontspec)             doesn't exist).
+
+
+Package fontspec Info: 
+(fontspec)             Font family 'Shobhika(0)' created for font 'Shobhika'
+(fontspec)             with options [Script=Devanagari].
+(fontspec)              
+(fontspec)              This font family consists of the following NFSS
+(fontspec)             series/shapes:
+(fontspec)              
+(fontspec)             - 'normal' (m/n) with NFSS spec.:
+(fontspec)             <->"Shobhika/OT:script=dev2;language=dflt;"
+(fontspec)             - 'bold' (b/n) with NFSS spec.:
+(fontspec)             <->"Shobhika/B/OT:script=dev2;language=dflt;"
+(fontspec)             - 'bold italic' (b/it) with NFSS spec.:
+(fontspec)             <->"Shobhika/BI/OT:script=dev2;language=dflt;"
+
+
+
+! LaTeX cmd Error: Command '\hindi' already defined.
+
+For immediate help type H <return>.
+ ...                                              
+                                                  
+l.8     \usepackage
+                   {geometry}
+? 
+! Emergency stop.
+ ...                                              
+                                                  
+l.8     \usepackage
+                   {geometry}
+
+You have used \NewDocumentCommand with a command that already has a
+definition.
+
+The existing definition of '\hindi' will not be altered.
+
+
+ 
+Here is how much of TeX's memory you used:
+ 3957 strings out of 405057
+ 117227 string characters out of 5498129
+ 542211 words of memory out of 5000000
+ 30613 multiletter control sequences out of 15000+600000
+ 626889 words of font info for 48 fonts, out of 8000000 for 9000
+ 1348 hyphenation exceptions out of 8191
+ 73i,0n,92p,301b,238s stack positions out of 10000i,1000n,20000p,200000b,200000s
+No pages of output.

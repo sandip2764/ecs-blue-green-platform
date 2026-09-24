@@ -14,10 +14,17 @@ output "alb_arn_suffix" {
   value = aws_lb.this.arn_suffix
 }
 
+output "https_listener_arn" {
+  value = aws_lb_listener.https.arn
+}
 
 # tg group 
 output "blue_target_group_arn" {
   value = aws_lb_target_group.blue.arn
+}
+
+output "blue_target_group_name" {
+  value = aws_lb_target_group.blue.name
 }
 
 output "blue_target_group_arn_suffix" {
@@ -26,6 +33,10 @@ output "blue_target_group_arn_suffix" {
 
 output "green_target_group_arn" {
   value = aws_lb_target_group.green.arn
+}
+
+output "green_target_group_name" {
+  value = aws_lb_target_group.green.name
 }
 
 output "green_target_group_arn_suffix" {

@@ -173,3 +173,23 @@ module "ecs" {
   blue_target_group_arn = module.lb.blue_target_group_arn
 
 }
+
+# codedeploy
+
+module "codedeploy" {
+  source = "../modules/codedeploy/"
+
+  project_name = var.project_name
+
+  ecs_service_name = module.ecs.service_name
+
+  ecs_cluster_name = module.ecs.cluster_name
+
+  https_listener_arn = module.lb.https_listener_arn
+
+  green_target_group_name = module.lb.green_target_group_name
+
+  blue_target_group_name = module.lb.blue_target_group_name
+
+  codedeploy_service_role_arn = module.iam.codedeploy_role_arn
+}

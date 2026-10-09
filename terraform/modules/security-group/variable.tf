@@ -15,15 +15,15 @@ variable "allowed_ports" {
 }
 
 variable "ingress_source_ip" {
-  type = string
+  type    = string
   default = null
 }
 
 variable "referenced_security_group_id" {
-  type = string
+  type    = string
   default = null
 }
 
 variable "tags" {
-  type    = map(string)
+  type = map(string)
 }

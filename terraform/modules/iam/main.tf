@@ -66,7 +66,7 @@ resource "aws_iam_policy" "github_ecr" {
         Resource = "*"
       },
       {
-        Sid    = "ECRPush"
+        Sid = "ECRPush"
 
         Effect = "Allow"
 

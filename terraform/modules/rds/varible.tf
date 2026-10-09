@@ -47,6 +47,6 @@ variable "skip_final_snapshot" {
 }
 
 variable "prevent_destroy" {
-  type = bool
+  type    = bool
   default = null
 }

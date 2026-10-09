@@ -1,37 +1,42 @@
-FROM php:8.2-apache
+# ============================================================
+# Stage 1: Composer dependencies
+# ============================================================
+FROM composer:2 AS composer
 
-# System packages - unzip is required for composer to extract downloaded packages
-RUN apt-get update && apt-get install -y --no-install-recommends \
-    unzip \
-    && rm -rf /var/lib/apt/lists/*
+WORKDIR /app
 
-# Install PHP extensions
-RUN docker-php-ext-install pdo pdo_mysql mysqli
-
-# Install Composer
-COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
-
-WORKDIR /var/www/html
-
-# Copy Composer files first
 COPY composer.json composer.lock ./
 
-# Install PHP dependencies
 RUN composer install \
     --no-dev \
     --optimize-autoloader \
-    --no-interaction
+    --no-interaction \
+    --no-progress
 
-# Copy application files
-COPY . .
 
-# Enable Apache rewrite
+# ============================================================
+# Stage 2: Production application
+# ============================================================
+FROM php:8.2-apache
+
+RUN docker-php-ext-install \
+    pdo_mysql \
+    mysqli
+
+RUN printf "log_errors=On\nerror_log=/proc/self/fd/2\n" \
+    > /usr/local/etc/php/conf.d/production-logging.ini
+
+WORKDIR /var/www/html
+
+COPY --from=composer /app/vendor ./vendor
+
+COPY --chown=www-data:www-data . .
+
 RUN a2enmod rewrite
 
-RUN cp /var/www/html/env.example.php /var/www/html/env.php
+RUN echo "ServerName localhost" >> /etc/apache2/apache2.conf
 
-# Set permissions
-RUN chown -R www-data:www-data /var/www/html
+RUN cp env.example.php env.php
 
 EXPOSE 80
 

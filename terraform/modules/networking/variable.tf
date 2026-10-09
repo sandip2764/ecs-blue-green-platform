@@ -9,14 +9,14 @@ variable "project_name" {
 variable "aws_public_subnet_cidrs_az" {
   type = map(object({
     cidr = string
-    az = string
+    az   = string
   }))
 }
 
 variable "aws_private_subnet_cidrs_az" {
   type = map(object({
     cidr = string
-    az = string
+    az   = string
   }))
 }
 

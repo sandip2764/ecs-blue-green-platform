@@ -30,3 +30,8 @@ variable "deployment_config_name" {
   type    = string
   default = "CodeDeployDefault.ECSAllAtOnce"
 }
+
+variable "codedeploy_alarm_name" {
+  description = "CloudWatch alarm monitored by CodeDeploy"
+  type        = list(string)
+}

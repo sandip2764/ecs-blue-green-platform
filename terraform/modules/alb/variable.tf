@@ -16,8 +16,8 @@ variable "internal" {
 }
 
 variable "load_balancer_type" {
-  type    = string
-#   default = "application"
+  type = string
+  #   default = "application"
 }
 
 variable "tags" {
@@ -28,7 +28,7 @@ variable "tags" {
 # https listner
 
 variable "ssl_policy" {
-  type = string
+  type    = string
   default = "ELBSecurityPolicy-2016-08"
 }
 
@@ -43,22 +43,22 @@ variable "vpc_id" {
 }
 
 variable "target_group_port" {
-  type    = number
+  type = number
 }
 
 variable "target_group_protocol" {
-  type    = string
+  type = string
 }
 
 
 variable "health_check_path" {
-  type    = string
+  type = string
 }
 
 variable "health_check_timeout" {
-  type    = number
+  type = number
 }
 
 variable "health_check_interval" {
-  type    = number
+  type = number
 }

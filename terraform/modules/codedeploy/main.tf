@@ -51,12 +51,33 @@ resource "aws_codedeploy_deployment_group" "this" {
   blue_green_deployment_config {
 
     deployment_ready_option {
-      action_on_timeout = "CONTINUE_DEPLOYMENT"
+      action_on_timeout = "STOP_DEPLOYMENT"
+      wait_time_in_minutes = 2 
     }
 
     terminate_blue_instances_on_deployment_success {
-      action                         = "TERMINATE"
+      action                           = "TERMINATE"
       termination_wait_time_in_minutes = 5
     }
+
+  }
+
+  # Automatic rollback
+  auto_rollback_configuration {
+    enabled = true
+
+    events = [
+      "DEPLOYMENT_FAILURE",
+      "DEPLOYMENT_STOP_ON_ALARM"
+    ]
+  }
+
+  # CloudWatch alarm monitoring
+  alarm_configuration {
+    enabled = true
+
+    alarms = var.codedeploy_alarm_name
+
+    ignore_poll_alarm_failure = false
   }
 }

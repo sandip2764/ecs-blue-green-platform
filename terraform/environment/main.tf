@@ -146,13 +146,6 @@ module "lb" {
   certificate_arn = aws_acm_certificate.app_cert.arn
 }
 
-# cloudwatch logs
-
-module "cloudwatch_logs" {
-  source = "../modules/cloudwatch/"
-
-  project_name = var.project_name
-}
 # ecs 
 
 module "ecs" {
@@ -160,7 +153,7 @@ module "ecs" {
 
   project_name       = "${var.project_name}-ecs"
   private_subnet_ids = values(module.networking.aws_private_subnet_ids)
-  log_group_name     = module.cloudwatch_logs.ecs_log_group_name
+  log_group_name     = module.monitoring.ecs_log_group_name
   execution_role_arn = module.iam.ecs_task_execution_role_arn
   aws_region         = var.region
 
@@ -172,6 +165,27 @@ module "ecs" {
 
   blue_target_group_arn = module.lb.blue_target_group_arn
 
+}
+
+# cloudwatch dashboard, alarm, sns, logs
+
+module "monitoring" {
+
+  source = "../modules/monitoring/"
+
+  project_name = var.project_name
+  aws_region   = var.region
+
+  aws_ecs_cluster_name = module.ecs.cluster_name
+  aws_ecs_service_name = module.ecs.service_name
+
+  DBInstanceIdentifier = module.rds.db_instance_identifier
+
+  alb_arn_suffix = module.lb.alb_arn_suffix
+
+  tg_blue_arn_suffix = module.lb.blue_target_group_arn_suffix
+
+  tg_green_arn_suffix = module.lb.green_target_group_arn_suffix
 }
 
 # codedeploy
@@ -192,4 +206,6 @@ module "codedeploy" {
   blue_target_group_name = module.lb.blue_target_group_name
 
   codedeploy_service_role_arn = module.iam.codedeploy_role_arn
+
+  codedeploy_alarm_name = values(module.monitoring.codedeploy_alarm_names)
 }

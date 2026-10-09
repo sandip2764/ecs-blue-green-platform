@@ -30,7 +30,7 @@ if ($location_set && !$is_kolkata) {
 
     <div class="hero">
         <div class="container">
-            <h1 class="heading">Find a Skilled Individual</h1>
+            <h1 class="heading">Find a Skilled Individual Green Zone</h1>
             <div class="search-bar-container">
                 <input type="text" id="searchInput" class="search-bar" placeholder="Search for ">
                 <button class="search-button">

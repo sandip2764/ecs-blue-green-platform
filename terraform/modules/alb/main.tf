@@ -21,10 +21,10 @@ resource "aws_lb" "this" {
 # ============================================================
 
 resource "aws_lb_target_group" "blue" {
-  name     = "${var.project_name}-blue-tg"
-  port     = var.target_group_port
-  protocol = var.target_group_protocol
-  vpc_id   = var.vpc_id
+  name        = "${var.project_name}-blue-tg"
+  port        = var.target_group_port
+  protocol    = var.target_group_protocol
+  vpc_id      = var.vpc_id
   target_type = "ip"
 
   health_check {
@@ -44,10 +44,10 @@ resource "aws_lb_target_group" "blue" {
 # ============================================================
 
 resource "aws_lb_target_group" "green" {
-  name     = "${var.project_name}-green-tg"
-  port     = var.target_group_port
-  protocol = var.target_group_protocol
-  vpc_id   = var.vpc_id
+  name        = "${var.project_name}-green-tg"
+  port        = var.target_group_port
+  protocol    = var.target_group_protocol
+  vpc_id      = var.vpc_id
   target_type = "ip"
 
   health_check {

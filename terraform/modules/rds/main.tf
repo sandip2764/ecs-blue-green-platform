@@ -4,14 +4,14 @@ resource "aws_db_subnet_group" "this_subnet_group" {
 }
 
 resource "aws_db_instance" "this_db_instance" {
-  identifier = var.identifier
+  identifier     = var.identifier
   instance_class = var.instance_class
 
-  allocated_storage = var.storage
-  storage_type = var.storage_type
+  allocated_storage      = var.storage
+  storage_type           = var.storage_type
   vpc_security_group_ids = var.security_group
 
-  engine = var.engine
+  engine         = var.engine
   engine_version = var.engine_version
 
   username = var.username

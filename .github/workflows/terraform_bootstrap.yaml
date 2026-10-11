@@ -1,0 +1,50 @@
+name : Setup Bootstrap Infra
+
+on:
+  workflow_dispatch:
+
+permissions:
+  id-token: write
+  contents: read
+
+env:
+  AWS_REGION: us-east-1
+
+jobs:
+  Build_Plan_Apply:
+    runs-on: ubuntu-latest
+
+    defaults:
+      run:
+        working-directory: terraform/bootstrap
+
+    steps:
+
+      - name: checkout repository
+        uses: actions/checkout@v4
+      
+      - name: Configure Aws Credential Using OIDC
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: arn:aws:iam::929616024576:role/GitHubActions-Terraform-Role
+          aws-region: ${{ env.AWS_REGION }}
+
+      - name: install terraform
+        uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_version: 1.13.1
+
+      - name: initialize terraform 
+        run: terraform init
+
+      - name: terraform fmt
+        run: terraform fmt -check
+        
+      - name: validate terraform code
+        run: terraform validate
+
+      - name: run terraform plan
+        run: terraform plan -out=tfplan
+
+      - name: run terraform apply with plan
+        run: terraform apply -auto-approve tfplan

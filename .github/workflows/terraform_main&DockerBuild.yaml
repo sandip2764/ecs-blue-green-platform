@@ -45,6 +45,8 @@ jobs:
             ${{ steps.login-ecr.outputs.registry }}/${{ env.ECR_REPOSITORY }}:${{ github.sha }}
 
   Terraform:
+    
+    needs: Build-And-Push
 
     runs-on: ubuntu-latest
 

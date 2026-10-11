@@ -1,0 +1,112 @@
+name: Destroy Environment Infrastructure
+
+permissions:
+  id-token: write
+  contents: read
+
+on:
+  workflow_dispatch:
+    inputs:
+      confirm:
+        description: 'Type DESTROY to confirm'
+        required: true
+        type: string
+        
+env:
+  AWS_REGION: us-east-1
+
+
+jobs:
+
+  destroy:
+
+    runs-on: ubuntu-latest
+
+    steps:
+
+      # ========================================
+      # 1. Safety Confirmation
+      # ========================================
+
+      - name: Confirm Destruction
+        run: |
+            if [ "${{ github.event.inputs.confirm }}" != "DESTROY" ]; then
+            echo "ERROR: Destruction not confirmed."
+            echo "Please type DESTROY exactly."
+            exit 1
+            fi
+
+            echo "Destruction confirmed."
+
+
+      # ========================================
+      # 2. Checkout Repository
+      # ========================================
+
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+
+      # ========================================
+      # 3. Configure AWS Credentials
+      # ========================================
+
+      - name: Configure Aws Credential Using OIDC
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: arn:aws:iam::929616024576:role/GitHubActions-Terraform-Role
+          aws-region: ${{ env.AWS_REGION }}
+
+
+      # ========================================
+      # 4. Install Terraform
+      # ========================================
+
+      - name: Install Terraform
+        uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_version: 1.13.1
+
+
+      # ========================================
+      # 5. Terraform Init
+      # ========================================
+
+      - name: Terraform Init
+        working-directory: terraform/environment
+        run: terraform init
+
+
+      # ========================================
+      # 6. Show Resources Before Destroy
+      # ========================================
+
+      - name: Show Terraform State
+        working-directory: terraform/environment
+        run: terraform state list
+
+
+      # ========================================
+      # 7. Destroy Environment
+      # ========================================
+
+      - name: Terraform Destroy
+        working-directory: terraform/environment
+        run: terraform destroy -auto-approve
+
+
+      # ========================================
+      # 8. Verify State
+      # ========================================
+
+      - name: Verify Environment Destroyed
+        working-directory: terraform/environment
+        run: |
+
+          echo "Checking remaining Terraform resources..."
+
+          terraform state list || true
+
+          echo ""
+          echo "Environment infrastructure destruction completed."
+          echo "Bootstrap infrastructure was NOT destroyed."

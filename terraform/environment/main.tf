@@ -159,7 +159,7 @@ module "ecs" {
 
   container_name = "${var.project_name}-container"
 
-  container_image   = "${data.terraform_remote_state.bootstrap.outputs.aws_ecr_repository_url}:v1"
+  container_image   = "${data.terraform_remote_state.bootstrap.outputs.aws_ecr_repository_url}:latest"
   security_group_id = [module.ecs_farget_security_group.aws_security_group_id]
   task_role_arn     = module.iam.ecs_task_role_arn
 

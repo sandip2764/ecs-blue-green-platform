@@ -1,0 +1,84 @@
+name: Docker Image Build, Push and Terraform Infra Create
+
+on:
+  workflow_dispatch:
+
+permissions:
+  id-token: write
+  contents: read
+
+env:
+  AWS_REGION: us-east-1
+  ECR_REPOSITORY: ecs-blue-green-platform
+
+jobs:
+
+  Build-And-Push:
+
+    runs-on: ubuntu-latest
+
+    steps:
+
+      - name: checkout repository
+        uses: actions/checkout@v4
+      
+      - name: Configure Aws Credential Using OIDC
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: arn:aws:iam::929616024576:role/GitHubActions-Terraform-Role
+          aws-region: ${{ env.AWS_REGION }}
+
+      - name: Login to Amazon ECR
+        id: login-ecr
+        uses: aws-actions/amazon-ecr-login@v2
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Build and Push Docker Image
+        uses: docker/build-push-action@v6
+        with:
+          context: ./app/karfect
+          push: true
+          tags: |
+            ${{ steps.login-ecr.outputs.registry }}/${{ env.ECR_REPOSITORY }}:latest
+            ${{ steps.login-ecr.outputs.registry }}/${{ env.ECR_REPOSITORY }}:${{ github.sha }}
+
+  Terraform:
+
+    runs-on: ubuntu-latest
+
+    defaults:
+      run:
+        working-directory: terraform/environment
+
+    steps:
+      
+      - name: checkout repository
+        uses: actions/checkout@v4
+      
+      - name: Configure Aws Credential Using OIDC
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: arn:aws:iam::929616024576:role/GitHubActions-Terraform-Role
+          aws-region: ${{ env.AWS_REGION }}
+
+      - name: install terraform
+        uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_version: 1.13.1
+
+      - name: initialize terraform 
+        run: terraform init
+
+      - name: terraform fmt
+        run: terraform fmt -check
+        
+      - name: validate terraform code
+        run: terraform validate
+
+      - name: run terraform plan
+        run: terraform plan -out=tfplan
+
+      - name: run terraform apply with plan
+        run: terraform apply -auto-approve tfplan

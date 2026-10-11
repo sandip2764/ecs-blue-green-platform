@@ -5,7 +5,7 @@ locals {
   ecs_alarms = {
 
     cpu_high = {
-      namespace = "AWS/ECS"
+      namespace           = "AWS/ECS"
       metric_name         = "CPUUtilization"
       statistic           = "Average"
       threshold           = 80
@@ -19,7 +19,7 @@ locals {
     }
 
     memory_high = {
-      namespace = "AWS/ECS"
+      namespace           = "AWS/ECS"
       metric_name         = "MemoryUtilization"
       statistic           = "Average"
       threshold           = 80
@@ -33,7 +33,7 @@ locals {
     }
 
     running_tasks_low = {
-      namespace = "ECS/ContainerInsights"
+      namespace           = "ECS/ContainerInsights"
       metric_name         = "RunningTaskCount"
       statistic           = "Minimum"
       threshold           = 1

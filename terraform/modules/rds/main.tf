@@ -14,7 +14,7 @@ resource "aws_db_instance" "this_db_instance" {
   engine         = var.engine
   engine_version = var.engine_version
 
-  db_name = "karfect"
+  db_name  = "karfect"
   username = var.username
   password = var.password
 

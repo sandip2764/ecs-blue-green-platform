@@ -8,7 +8,7 @@ resource "aws_ecs_task_definition" "db_import" {
   container_definitions = jsonencode([
     {
       name      = "db-import"
-      image     = "${aws_ecr_repository.app.repository_url}:db-import-latest"
+      image     = "${data.terraform_remote_state.bootstrap.outputs.aws_ecr_repository_url}:db-import-latest"
       essential = true
 
       environment = [
@@ -25,7 +25,7 @@ resource "aws_ecs_task_definition" "db_import" {
       logConfiguration = {
         logDriver = "awslogs"
         options = {
-          awslogs-group         = module.monitoring.aws_cloudwatch_log_group.ecs.name
+          awslogs-group         = module.monitoring.ecs_log_group_name
           awslogs-region        = var.region
           awslogs-stream-prefix = "import"
         }

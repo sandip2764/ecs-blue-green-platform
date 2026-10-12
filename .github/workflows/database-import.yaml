@@ -32,8 +32,7 @@ jobs:
         working-directory: terraform/environment
         run: |
           terraform init
-          echo "ECS_CLUSTER=$(terraform output -raw ecs_cluster_name)" >> "$GITHUB_ENV"
-          echo "PRIVATE_SUBNETS=$(terraform output -json private_subnet_ids | jq -r 'values | join(","))" >> "$GITHUB_ENV"
+          echo "ECS_CLUSTER=$(terraform output -raw ecs_cluster_name)" >> "$GITHUB_ENV"echo "PRIVATE_SUBNETS=$(terraform output -json private_subnet_ids | jq -r '[.[]] | join(",")')" >> "$GITHUB_ENV"
           echo "ECS_SG=$(terraform output -raw ecs_security_group_id)" >> "$GITHUB_ENV"
           echo "ECR_URL=$(terraform output -raw ecr_repository_url)" >> "$GITHUB_ENV"
 

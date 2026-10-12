@@ -1,0 +1,83 @@
+name: Import Initial RDS Database
+
+on:
+  workflow_dispatch:
+    
+permissions:
+  id-token: write
+  contents: read
+
+env:
+  AWS_REGION: us-east-1
+  TASK_DEFINITION: karfect-db-import
+  CONTAINER_NAME: db-import
+
+jobs:
+  import-database:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: arn:aws:iam::929616024576:role/GitHubActions-Terraform-Role
+          aws-region: ${{ env.AWS_REGION }}
+
+      - uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_version: 1.13.1
+          terraform_wrapper: false
+
+      - name: Read infra outputs from Terraform
+        working-directory: terraform/environment
+        run: |
+          terraform init
+          echo "ECS_CLUSTER=$(terraform output -raw ecs_cluster_name)" >> "$GITHUB_ENV"
+          echo "PRIVATE_SUBNETS=$(terraform output -raw private_subnet_ids_csv)" >> "$GITHUB_ENV"
+          echo "ECS_SG=$(terraform output -raw ecs_security_group_id)" >> "$GITHUB_ENV"
+          echo "ECR_URL=$(terraform output -raw ecr_repository_url)" >> "$GITHUB_ENV"
+
+      - uses: aws-actions/amazon-ecr-login@v2
+
+      - name: Build and push importer image
+        run: |
+          docker build -t "$ECR_URL:db-import-latest" ./database-import
+          docker push "$ECR_URL:db-import-latest"
+
+      - name: Run one-off ECS import task
+        run: |
+          set -euo pipefail
+
+          NETWORK="awsvpcConfiguration={subnets=[${PRIVATE_SUBNETS}],securityGroups=[${ECS_SG}],assignPublicIp=DISABLED}"
+
+          RUN_JSON=$(aws ecs run-task \
+            --cluster "$ECS_CLUSTER" \
+            --task-definition "$TASK_DEFINITION" \
+            --launch-type FARGATE \
+            --count 1 \
+            --network-configuration "$NETWORK" \
+            --output json)
+
+          TASK_ARN=$(echo "$RUN_JSON" | jq -r '.tasks[0].taskArn // empty')
+          if [ -z "$TASK_ARN" ]; then
+            echo "ERROR: task start nahi hua"
+            echo "$RUN_JSON" | jq '.failures'
+            exit 1
+          fi
+
+          echo "Started: $TASK_ARN"
+          aws ecs wait tasks-stopped --cluster "$ECS_CLUSTER" --tasks "$TASK_ARN"
+
+          TASK_JSON=$(aws ecs describe-tasks --cluster "$ECS_CLUSTER" --tasks "$TASK_ARN" --output json)
+
+          EXIT_CODE=$(echo "$TASK_JSON" | jq -r --arg n "$CONTAINER_NAME" \
+            '.tasks[0].containers[] | select(.name==$n) | .exitCode // "missing"')
+
+          if [ "$EXIT_CODE" != "0" ]; then
+            echo "ERROR: Import failed. Exit code: $EXIT_CODE"
+            echo "$TASK_JSON" | jq -r '.tasks[0].stoppedReason, .tasks[0].containers[0].reason'
+            echo "Logs: CloudWatch -> /ecs/karfect/db-import"
+            exit 1
+          fi
+
+          echo "SUCCESS: Database import completed."

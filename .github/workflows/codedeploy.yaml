@@ -1,0 +1,152 @@
+
+name: Build and Deploy ECS Blue Green
+
+on:
+  workflow_dispatch:
+
+permissions:
+  id-token: write
+  contents: read
+
+env:
+  AWS_REGION: us-east-1
+  ECR_REPOSITORY: ecs-blue-green-platform
+  ECS_TASK_DEFINITION_FAMILY: ecs-blue-green-platform-ecs-task
+  APP_CONTAINER_NAME: ecs-blue-green-platform-container
+  CONTAINER_PORT: "80"
+  CODEDEPLOY_APPLICATION: ecs-blue-green-platform-codedeploy
+  CODEDEPLOY_DEPLOYMENT_GROUP: ecs-blue-green-platform-deployment-group
+
+jobs:
+  build-and-deploy:
+    name: Build, Push and Deploy
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Configure AWS credentials using OIDC
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: arn:aws:iam::929616024576:role/GitHubActions-Terraform-Role
+          aws-region: ${{ env.AWS_REGION }}
+
+      - name: Login to Amazon ECR
+        id: login-ecr
+        uses: aws-actions/amazon-ecr-login@v2
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Build and push application image
+        uses: docker/build-push-action@v6
+        with:
+          context: ./app/karfect
+          push: true
+          tags: ${{ steps.login-ecr.outputs.registry }}/${{ env.ECR_REPOSITORY }}:${{ github.sha }}
+
+      - name: Prepare new ECS task definition
+        shell: bash
+        env:
+          ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+          IMAGE_TAG: ${{ github.sha }}
+        run: |
+          set -euo pipefail
+
+          IMAGE_URI="${ECR_REGISTRY}/${ECR_REPOSITORY}:${IMAGE_TAG}"
+
+          aws ecs describe-task-definition \
+            --task-definition "$ECS_TASK_DEFINITION_FAMILY" \
+            --query taskDefinition \
+            --output json > task-definition.json
+
+          jq -e --arg name "$APP_CONTAINER_NAME" \
+            '.containerDefinitions | any(.name == $name)' \
+            task-definition.json >/dev/null || {
+              echo "Application container not found in task definition."
+              exit 1
+            }
+
+          jq --arg name "$APP_CONTAINER_NAME" \
+             --arg image "$IMAGE_URI" '
+            (.containerDefinitions |= map(
+              if .name == $name then .image = $image else . end
+            ))
+            | del(
+                .taskDefinitionArn,
+                .revision,
+                .status,
+                .requiresAttributes,
+                .compatibilities,
+                .registeredAt,
+                .registeredBy,
+                .deregisteredAt,
+                .deregistrationInfo
+              )
+          ' task-definition.json > task-definition-new.json
+
+          TASK_DEF_ARN=$(aws ecs register-task-definition \
+            --cli-input-json file://task-definition-new.json \
+            --query 'taskDefinition.taskDefinitionArn' \
+            --output text)
+
+          echo "Registered task definition: $TASK_DEF_ARN"
+          echo "TASK_DEF_ARN=$TASK_DEF_ARN" >> "$GITHUB_ENV"
+
+      - name: Create CodeDeploy AppSpec
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          cat > appspec.yaml <<EOF
+          version: 0.0
+          Resources:
+            - TargetService:
+                Type: AWS::ECS::Service
+                Properties:
+                  TaskDefinition: "$TASK_DEF_ARN"
+                  LoadBalancerInfo:
+                    ContainerName: "$APP_CONTAINER_NAME"
+                    ContainerPort: $CONTAINER_PORT
+          EOF
+
+          jq -n --arg content "$(cat appspec.yaml)" \
+            '{
+              revisionType: "AppSpecContent",
+              appSpecContent: {
+                content: $content
+              }
+            }' > revision.json
+
+      - name: Start CodeDeploy deployment
+        id: deploy
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          DEPLOYMENT_ID=$(aws deploy create-deployment \
+            --application-name "$CODEDEPLOY_APPLICATION" \
+            --deployment-group-name "$CODEDEPLOY_DEPLOYMENT_GROUP" \
+            --revision file://revision.json \
+            --description "GitHub commit ${GITHUB_SHA}" \
+            --query deploymentId \
+            --output text)
+
+          echo "Deployment ID: $DEPLOYMENT_ID"
+          echo "DEPLOYMENT_ID=$DEPLOYMENT_ID" >> "$GITHUB_ENV"
+
+      - name: Wait for CodeDeploy result
+        shell: bash
+        run: |
+          if aws deploy wait deployment-successful \
+            --deployment-id "$DEPLOYMENT_ID"; then
+            echo "Blue/Green deployment succeeded."
+          else
+            echo "Deployment did not succeed."
+            aws deploy get-deployment \
+              --deployment-id "$DEPLOYMENT_ID" \
+              --query 'deploymentInfo.{status:status,error:errorInformation}' \
+              --output json || true
+            exit 1
+          fi

@@ -11,13 +11,10 @@ resource "aws_ecs_task_definition" "db_import" {
       image     = "${data.terraform_remote_state.bootstrap.outputs.aws_ecr_repository_url}:db-import-latest"
       essential = true
 
-      environment = [
-        { name = "DB_PORT", value = "3306" }
-      ]
-
       secrets = [
         { name = "DB_HOST",     valueFrom = "${aws_secretsmanager_secret.db.arn}:host::" },
-        { name = "DB_NAME",     valueFrom = "${aws_secretsmanager_secret.db.arn}:db::" },
+        { name = "DB_PORT",     valueFrom = "${aws_secretsmanager_secret.db.arn}:port::" },
+        { name = "DB_NAME",     valueFrom = "${aws_secretsmanager_secret.db.arn}:database::" },
         { name = "DB_USERNAME", valueFrom = "${aws_secretsmanager_secret.db.arn}:username::" },
         { name = "DB_PASSWORD", valueFrom = "${aws_secretsmanager_secret.db.arn}:password::" }
       ]

@@ -12,9 +12,9 @@ resource "aws_ecs_task_definition" "db_import" {
       essential = true
 
       secrets = [
-        { name = "DB_HOST",     valueFrom = "${aws_secretsmanager_secret.db.arn}:host::" },
-        { name = "DB_PORT",     valueFrom = "${aws_secretsmanager_secret.db.arn}:port::" },
-        { name = "DB_NAME",     valueFrom = "${aws_secretsmanager_secret.db.arn}:database::" },
+        { name = "DB_HOST", valueFrom = "${aws_secretsmanager_secret.db.arn}:host::" },
+        { name = "DB_PORT", valueFrom = "${aws_secretsmanager_secret.db.arn}:port::" },
+        { name = "DB_NAME", valueFrom = "${aws_secretsmanager_secret.db.arn}:database::" },
         { name = "DB_USERNAME", valueFrom = "${aws_secretsmanager_secret.db.arn}:username::" },
         { name = "DB_PASSWORD", valueFrom = "${aws_secretsmanager_secret.db.arn}:password::" }
       ]
